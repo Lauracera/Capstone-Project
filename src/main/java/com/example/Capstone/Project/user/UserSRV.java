@@ -1,5 +1,7 @@
 package com.example.Capstone.Project.user;
 
+import com.example.Capstone.Project.exceptions.NotFoundException;
+import com.example.Capstone.Project.exceptions.UnauthorizedException;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,8 +21,8 @@ public class UserSRV {
 
     @Autowired
     PasswordEncoder passwordEncoder;
-    @Autowired
-    EmailSender emailSender;
+    //@Autowired
+    //EmailSender emailSender;
 
     public Page<User> getAll(int pageNumber, int pageSize, String orderBy){
         if (pageNumber > 20) pageSize = 20;

@@ -1,4 +1,13 @@
 package com.example.Capstone.Project.exceptions;
 
-public class NotFoundException {
+import java.util.UUID;
+
+public class NotFoundException extends RuntimeException{
+    public NotFoundException(UUID id){
+        super("Element with id " + id + " not found.");
+    }
+
+    public NotFoundException(String name) {
+        super("ELement "+ name + " not found");
+    }
 }

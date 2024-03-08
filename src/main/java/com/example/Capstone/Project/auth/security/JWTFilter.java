@@ -37,7 +37,7 @@ public class JWTFilter extends OncePerRequestFilter {
 
         jwtTools.verifyToken(accessToken);
 
-        String id = jwtTools.exctractIdFormToken(accessToken);
+        String id = jwtTools.extractIdFromToken(accessToken);
         User user = userSRV.findById(UUID.fromString(id));
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());

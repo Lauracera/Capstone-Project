@@ -44,7 +44,7 @@ public class UserSRV {
         return userDAO.findByEmail(email).orElseThrow(()-> new NotFoundException(email));
     }
 
-    public User findByIdAndUdate(UUID id, UserDTO userDTO, User user){
+    public User findByIdAndUpdate(UUID id, UserDTO userDTO, User user){
         User found = findById(UUID.fromString(String.valueOf(id)));
         if(!user.getId().equals(found.getId())) throw new UnauthorizedException("Utente con id sbagliato");
         found.setName(userDTO.name());

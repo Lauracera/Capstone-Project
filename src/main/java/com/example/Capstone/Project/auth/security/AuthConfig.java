@@ -23,9 +23,23 @@ import java.util.Arrays;
 public class AuthConfig {
     @Autowired
     private JWTFilter jwtFilter;
-    @Autowired
-    private Filter filter;
-    private jakarta.servlet.Filter handler;
+   // @Autowired
+    //private Filter filter;
+    //private jakarta.servlet.Filter handler;
+
+    /*@Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.formLogin(AbstractHttpConfigurer::disable);
+        httpSecurity.csrf(AbstractHttpConfigurer::disable);
+        httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        httpSecurity.cors(Customizer.withDefaults());
+
+        httpSecurity.addFilterBefore(handler, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/**").permitAll());
+
+        return httpSecurity.build();
+    }*/
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -34,7 +48,6 @@ public class AuthConfig {
         httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         httpSecurity.cors(Customizer.withDefaults());
 
-        httpSecurity.addFilterBefore(handler, UsernamePasswordAuthenticationFilter.class);
         httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/**").permitAll());
 

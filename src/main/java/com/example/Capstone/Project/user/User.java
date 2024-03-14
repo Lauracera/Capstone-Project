@@ -1,6 +1,7 @@
 package com.example.Capstone.Project.user;
 
 import com.example.Capstone.Project.enums.Role;
+import com.example.Capstone.Project.enums.Season;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,14 +32,16 @@ public class User implements UserDetails {
     private String surname;
     private String email;
     private String password;
+    private Season season;
     @Enumerated(EnumType.STRING)
     private Set<Role> roles= new HashSet<>();
 
-    public User(String name, String surname, String email, String password, Set<Role> roles) {
+    public User(String name, String surname, String email, String password, Season season, Set<Role> roles) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
+        this.season = season;
         this.roles.add(Role.USER);
     }
 

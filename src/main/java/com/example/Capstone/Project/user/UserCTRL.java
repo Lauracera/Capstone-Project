@@ -31,7 +31,7 @@ public class UserCTRL {
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('USER')")
     public User findByIdAndUpdate(@PathVariable UUID id, @RequestBody UserDTO eventDTO, @AuthenticationPrincipal User currentAuthenticatedUser){
-        return userSRV.findByIdAndUdate(id, eventDTO, currentAuthenticatedUser);
+        return userSRV.findByIdAndUpdate(id, eventDTO, currentAuthenticatedUser);
     }
 
     @DeleteMapping("/{id}")

@@ -1,21 +1,10 @@
 package com.example.Capstone.Project.configuration;
 
-import com.example.Capstone.Project.user.UserDTO;
-import com.sendgrid.Method;
-import com.sendgrid.Request;
-import com.sendgrid.Response;
-import com.sendgrid.SendGrid;
-import com.sendgrid.helpers.mail.Mail;
-import com.sendgrid.helpers.mail.objects.Content;
-import com.sendgrid.helpers.mail.objects.Email;
-import lombok.Value;
 import org.springframework.context.annotation.Configuration;
-
-import java.io.IOException;
 
 @Configuration
 public class EmailSender {
-    private final String apiKey;
+    /*private final String apiKey;
 
 
     public EmailSender(@Value("${sendgrid.api}") String apiKey) {
@@ -41,5 +30,5 @@ public class EmailSender {
         System.out.println(response.getStatusCode());
         System.out.println(response.getBody());
         System.out.println(response.getHeaders());
-    }
+    }*/
 }

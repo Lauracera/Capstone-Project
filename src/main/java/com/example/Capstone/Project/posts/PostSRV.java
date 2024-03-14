@@ -21,10 +21,10 @@ public class PostSRV {
         return postDAO.findAll(pageable);
     }
 
-    public Post save(PostDTO invoiceDTO) {
+    /*public Post save(PostDTO invoiceDTO) {
         Post post= postSRV.findById(postDTO.title());
         return postDAO.save(new Post());
-    }
+    }*/
 
     public Post findById(UUID postId){
         return postDAO.findById(postId).orElseThrow(()->new NotFoundException(postId));

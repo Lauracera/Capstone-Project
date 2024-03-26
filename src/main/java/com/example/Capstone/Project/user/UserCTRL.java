@@ -23,6 +23,16 @@ public class UserCTRL {
         return userSRV.getAll(pageNumber, pageSize, orderBy);
     }
 
+   /* @PostMapping("/login")
+    public ResponseEntity<User> createUser(@RequestBody @Validated UserDTO userDTO, BindingResult bindingResult) throws IOException {
+        if (bindingResult.hasErrors()) {
+            throw new BadRequestException();
+        }
+        User createdUser = userSRV.save(userDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+    }*/
+
+
     @GetMapping("/{id}")
     public User findById(@PathVariable UUID id) {
         return userSRV.findById(id);

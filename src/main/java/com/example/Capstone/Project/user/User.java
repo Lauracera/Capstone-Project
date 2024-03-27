@@ -12,8 +12,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -34,15 +32,15 @@ public class User implements UserDetails {
     private String password;
     private Season season;
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles= new HashSet<>();
+    private Role roles;
 
-    public User(String name, String surname, String email, String password, Season season, Set<Role> roles) {
+    public User(String name, String surname, String email, String password, Season season, Role roles) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.season = season;
-        this.roles.add(Role.USER);
+        this.roles= roles;
     }
 
     public User(String name, String surname, String encode) {

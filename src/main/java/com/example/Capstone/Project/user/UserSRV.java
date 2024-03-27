@@ -1,5 +1,6 @@
 package com.example.Capstone.Project.user;
 
+import com.example.Capstone.Project.enums.Role;
 import com.example.Capstone.Project.exceptions.NotFoundException;
 import com.example.Capstone.Project.exceptions.UnauthorizedException;
 import org.apache.coyote.BadRequestException;
@@ -32,7 +33,8 @@ public class UserSRV {
 
     public User save(UserDTO userDTO) throws IOException{
         if(userDAO.existsByEmail(userDTO.email())) throw new BadRequestException("Email già esistente.");
-        User user = new User(userDTO.name(), userDTO.surname(), passwordEncoder.encode(userDTO.password()));
+
+        User user = new User(userDTO.name(), userDTO.surname(), userDTO.email(), passwordEncoder.encode(userDTO.password()), userDTO.season(), Role.USER);
         return userDAO.save(user);
     }
 

@@ -1,5 +1,6 @@
 package com.example.Capstone.Project.user;
 
+import com.example.Capstone.Project.enums.Season;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -15,7 +16,7 @@ public record UserDTO(
         @Email(message = "Email non valida")
         String email,
         @NotEmpty(message="Campo richiesto!")
-        String season,
+        Season season,
         @NotEmpty(message = "Campo richiesto!")
         @Size(min = 3, max = 20, message = "Il campo deve avere caratteri compresi tra 3 e 20")
         String password

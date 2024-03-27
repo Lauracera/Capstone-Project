@@ -19,7 +19,7 @@ public class PostSRV {
     private PostDAO postDAO;
 
     public void createPost(PostDTO postDTO, User currentUser) {
-        if (!currentUser.getRoles().contains(Role.ADMIN)) {
+        if (!currentUser.getRoles().equals(Role.ADMIN)) {
             throw new UnauthorizedException("Solo gli amministratori possono creare nuovi post");
         }
     }

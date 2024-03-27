@@ -31,7 +31,7 @@ public class AuthCRTL {
         return new LoginRegisterDTO(authSRV.autheticateUserAndGenerateToken(payload));
     }
 
-    @PostMapping("/register")
+    @PostMapping("/signin")
     @ResponseStatus(HttpStatus.CREATED)
     public User register(@RequestBody @Validated UserDTO userDTO, BindingResult validation) throws IOException {
         if (validation.hasErrors()) {

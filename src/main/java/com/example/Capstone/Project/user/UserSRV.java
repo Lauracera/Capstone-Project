@@ -34,7 +34,7 @@ public class UserSRV {
     public User save(UserDTO userDTO) throws IOException{
         if(userDAO.existsByEmail(userDTO.email())) throw new BadRequestException("Email già esistente.");
 
-        User user = new User(userDTO.name(), userDTO.surname(), userDTO.email(), passwordEncoder.encode(userDTO.password()), userDTO.season(), Role.USER);
+        User user = new User(userDTO.name(), userDTO.surname(), userDTO.email(), passwordEncoder.encode(userDTO.password()), userDTO.getSeason(), Role.USER);
         return userDAO.save(user);
     }
 

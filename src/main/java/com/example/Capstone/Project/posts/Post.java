@@ -21,9 +21,11 @@ public class Post {
     private UUID id;
     private String title;
     private String bodyText;
+    private String image;
 
-    public Post(String title, String bodyText) {
+    public Post(String title, String bodyText, String image) {
         this.title = title;
         this.bodyText = bodyText;
+        this.image = image;
     }
 }

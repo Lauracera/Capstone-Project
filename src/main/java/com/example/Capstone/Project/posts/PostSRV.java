@@ -1,7 +1,6 @@
 package com.example.Capstone.Project.posts;
 
 import com.example.Capstone.Project.enums.Role;
-import com.example.Capstone.Project.exceptions.NotFoundException;
 import com.example.Capstone.Project.exceptions.UnauthorizedException;
 import com.example.Capstone.Project.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +10,29 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import java.io.IOException;
+import java.util.Optional;
+
 
 @Service
 public class PostSRV {
     @Autowired
     private PostDAO postDAO;
 
+
+
     public void createPost(PostDTO postDTO, User currentUser) {
         if (!currentUser.getRoles().equals(Role.ADMIN)) {
             throw new UnauthorizedException("Solo gli amministratori possono creare nuovi post");
         }
+    }
+
+
+    public Post save(PostDTO postDTO) throws IOException {
+        //if(postDAO.findByTitle(postDTO.title())) throw new BadRequestException("Post già esistente.");
+
+        Post post = new Post(postDTO.title(), postDTO.bodyText(), postDTO.image());
+        return postDAO.save(post);
     }
 
     public Page<Post> getAll(int pageNumber, int size, String orderBy){
@@ -30,19 +41,33 @@ public class PostSRV {
         return postDAO.findAll(pageable);
     }
 
-    /*public Post save(PostDTO invoiceDTO) {
-        Post post= postSRV.findById(postDTO.title());
-        return postDAO.save(new Post());
+    /*public Post updatePost(String title,PostDTO postDTO){
+        Post found = this.updatePost(title,postDTO);
+        found.setTitle(postDTO.title());
+        found.setBodyText(postDTO.bodyText());
+        return postDAO.save(found);
     }*/
 
-    public Post findById(UUID postId){
-        return postDAO.findById(postId).orElseThrow(()->new NotFoundException(postId));
+    public Post updatePost(String title, PostDTO postDTO) {
+
+        Optional<Post> postOptional = postDAO.findByTitle(title);
+
+        if (postOptional.isPresent()) {
+            Post found = postOptional.get();
+
+            found.setTitle(postDTO.title());
+            found.setBodyText(postDTO.bodyText());
+            found.setBodyText(postDTO.image());
+
+            return postDAO.save(found);
+        } else {
+            return null;
+        }
     }
 
-
-
-    public void createAndSaveNewPost() {
-        Post newPost = new Post();
-        postDAO.save(newPost);
+    public Post deletePost(String title){
+        Post found = this.deletePost(title);
+        postDAO.delete(found);
+        return found;
     }
 }
